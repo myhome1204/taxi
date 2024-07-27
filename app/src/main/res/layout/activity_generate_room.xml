@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.GenerateRoomActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+    />
+
+
+    <ImageButton
+        android:id="@+id/pButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="15dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generateTitleText"
+        android:textColor="@color/black"
+        android:textSize="37sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/pButton" />
+
+    <EditText
+        android:id="@+id/startPointEdit"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/start_custom_edit"
+        android:drawableEnd="@drawable/baseline_location_searching_24"
+        android:hint="출발지를 입력해주세요"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+
+        />
+
+    <EditText
+        android:id="@+id/endPointEdit"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/end_custom_edit"
+        android:hint="목적지를 입력해주세요"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/downImage"
+
+        />
+
+    <ImageView
+        android:id="@+id/downImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="20dp"
+        android:src="@drawable/baseline_arrow_downward_24"
+        app:layout_constraintEnd_toEndOf="@+id/guideRight"
+        app:layout_constraintStart_toStartOf="@+id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/startPointEdit" />
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/TimeText"
+        android:textColor="@color/black"
+        android:textSize="37sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/endPointEdit" />
+
+    <EditText
+        android:id="@+id/timeEdit"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/end_custom_edit"
+        android:hint="목적지를 입력해주세요"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
+
+    <Button
+        android:id="@+id/generateRoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/timeEdit" />
+</androidx.constraintlayout.widget.ConstraintLayout>
