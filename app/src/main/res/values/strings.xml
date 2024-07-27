@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">texi</string>
+    <string name="generateTitleText">어디로 갈까요?</string>
+    <string name="TimeText">합승 시간</string>
 </resources>
