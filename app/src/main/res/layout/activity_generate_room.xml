@@ -58,6 +58,25 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
 
         />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintTop_toBottomOf="@id/startPointEdit"
+        />
+    <ImageView
+        android:id="@+id/downImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="20dp"
+        android:src="@drawable/baseline_arrow_downward_24"
+        app:layout_constraintEnd_toEndOf="@+id/guideRight"
+        app:layout_constraintStart_toStartOf="@+id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/searchRv" />
+
 
     <EditText
         android:id="@+id/endPointEdit"
@@ -72,16 +91,6 @@
 
         />
 
-    <ImageView
-        android:id="@+id/downImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:padding="20dp"
-        android:src="@drawable/baseline_arrow_downward_24"
-        app:layout_constraintEnd_toEndOf="@+id/guideRight"
-        app:layout_constraintStart_toStartOf="@+id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/startPointEdit" />
 
     <TextView
         android:id="@+id/timeTextView"
@@ -110,10 +119,16 @@
 
     <Button
         android:id="@+id/generateRoomButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/timeEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/timeEdit"
+        android:text="방 만들기"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/radius_bg"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
