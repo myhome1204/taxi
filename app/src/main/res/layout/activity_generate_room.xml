@@ -22,7 +22,6 @@
         app:layout_constraintGuide_end="20dp" />
     />
 
-
     <ImageButton
         android:id="@+id/pButton"
         android:layout_width="wrap_content"
@@ -58,14 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
 
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchRv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintEnd_toEndOf="@id/guideRight"
-        app:layout_constraintTop_toBottomOf="@id/startPointEdit"
-        />
+
     <ImageView
         android:id="@+id/downImage"
         android:layout_width="wrap_content"
@@ -75,7 +67,7 @@
         android:src="@drawable/baseline_arrow_downward_24"
         app:layout_constraintEnd_toEndOf="@+id/guideRight"
         app:layout_constraintStart_toStartOf="@+id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/searchRv" />
+        app:layout_constraintTop_toBottomOf="@+id/startPointEdit" />
 
 
     <EditText
@@ -105,14 +97,14 @@
         app:layout_constraintStart_toStartOf="@id/guideLeft"
         app:layout_constraintTop_toBottomOf="@+id/endPointEdit" />
 
-    <EditText
-        android:id="@+id/timeEdit"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/end_custom_edit"
-        android:hint="목적지를 입력해주세요"
-        android:padding="15dp"
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="@+id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
         app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
@@ -122,13 +114,12 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@id/guideRight"
-        app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/timeEdit"
+        android:background="@drawable/radius_bg"
         android:text="방 만들기"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@drawable/radius_bg"
-        />
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 </androidx.constraintlayout.widget.ConstraintLayout>
