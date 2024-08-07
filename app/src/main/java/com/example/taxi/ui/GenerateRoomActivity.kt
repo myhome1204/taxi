@@ -50,6 +50,7 @@ class GenerateRoomActivity : AppCompatActivity() {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGenerateRoomBinding.inflate(layoutInflater)
@@ -69,44 +70,104 @@ class GenerateRoomActivity : AppCompatActivity() {
         checkFieldsForEmptyValues()
 
         // 현재 위치 가져와서 startPointEditText에 힌트로 설정
-        checkLocationPermissionAndGetLocation(binding.startPointEdit)
+//        startHint = checkLocationPermissionAndGetLocation(binding.startPointEdit).toString()
+
+        binding.webView.visibility = View.INVISIBLE
+
+        val fullAddress = intent.getStringExtra("full address")
+        val fullAddress2 = intent.getStringExtra("full address2")
+        val jibun = intent.getStringExtra("jibun")
 
 
-        val webView: WebView = binding.webView
+        binding.startPointEdit.setOnClickListener {
+            Log.d("this", "눌림")
+            val webView: WebView = binding.webView
+            webView.visibility = View.VISIBLE
 
-        webView.clearCache(true)
-        webView.settings.javaScriptEnabled = true
+            webView.clearCache(true)
+            webView.settings.javaScriptEnabled = true
 
-        webView.addJavascriptInterface(BridgeInterface(), "Android")
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                webView.loadUrl("javascript:sample2_execDaumPostcode();")
+            webView.addJavascriptInterface(BridgeInterface(), "Android")
+            webView.webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    webView.loadUrl("javascript:sample2_execDaumPostcode();")
+                }
             }
+            webView.loadUrl("https://seulseul-35d52.web.app")
+
+            val rmStartPoint = fullAddress.toString()
+            binding.startPointEdit.setText(rmStartPoint)
         }
 
-        webView.loadUrl("https://seulseul-35d52.web.app")
+        binding.endPointEdit.setOnClickListener {
+            Log.d("this", "눌림")
+            val webView: WebView = binding.webView
+            webView.visibility = View.VISIBLE
 
-//        getCurrentLocationCoordinates { latitude, longitude ->
-//            Toast.makeText(this, "Latitude: $latitude, Longitude: $longitude", Toast.LENGTH_SHORT).show()
-//        }
+            webView.clearCache(true)
+            webView.settings.javaScriptEnabled = true
+
+            webView.addJavascriptInterface(BridgeInterface2(), "Android")
+            webView.webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    webView.loadUrl("javascript:sample2_execDaumPostcode();")
+                }
+            }
+            webView.loadUrl("https://seulseul-35d52.web.app")
+
+            val rmEndPoint =  fullAddress2.toString()
+            binding.endPointEdit.setText(rmEndPoint)
+        }
+
+
+        binding.generateRoomButton.setOnClickListener {
+
+            val rmStart = binding.startPointEdit.text.toString()
+            val rmEnd = binding.endPointEdit.text.toString()
+            val hour = binding.timePicker.hour
+            val min = binding.timePicker.minute
+
+            //출발지
+            Log.d("rmStart", rmStart)
+            //목적지
+            Log.d("rmEnd", rmEnd)
+            //시간 (am/pm 에 따라 13시 1시 이런식으로 나옴)
+            Log.d("hour", hour.toString())
+            //분
+            Log.d("min", min.toString())
+
+        }
     }
 
-
-
-    inner class BridgeInterface() {
+    inner class BridgeInterface {
         @JavascriptInterface
         @SuppressWarnings("unused")
         fun processDATA(fullRoadAddr: String, jibunAddr: String) {
-            val intent = Intent(this@GenerateRoomActivity, GenerateRoomActivity::class.java)
-//            intent.putExtra(EXTRA_ROAD_ADDR, fullRoadAddr)
-//            intent.putExtra(EXTRA_JIBUN_ADDR, jibunAddr)
-            Log.d("jibun", jibunAddr)
-            Log.d("jibun", fullRoadAddr)
+            val intent = Intent().apply {
+                putExtra("full address", fullRoadAddr)
+                putExtra("jibun", jibunAddr)
+            }
             setResult(RESULT_OK, intent)
-            startActivity(intent)
-            finish()
+            runOnUiThread {
+                binding.startPointEdit.setText(fullRoadAddr)
+                binding.webView.visibility = View.INVISIBLE
+            }
         }
-
+    }
+    inner class BridgeInterface2 {
+        @JavascriptInterface
+        @SuppressWarnings("unused")
+        fun processDATA(fullRoadAddr: String, jibunAddr: String) {
+            val intent = Intent().apply {
+                putExtra("full address2", fullRoadAddr)
+                putExtra("jibun", jibunAddr)
+            }
+            setResult(RESULT_OK, intent)
+            runOnUiThread {
+                binding.endPointEdit.setText(fullRoadAddr)
+                binding.webView.visibility = View.INVISIBLE
+            }
+        }
     }
 
     // 현재 위치의 경도와 위도를 반환하는 함수
