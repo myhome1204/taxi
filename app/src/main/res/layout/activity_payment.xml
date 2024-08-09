@@ -71,7 +71,7 @@
         android:id="@+id/howMuchTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="택시비가 얼마 나왔나?"
+        android:text="택시비가 얼마 나왔나요?"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
