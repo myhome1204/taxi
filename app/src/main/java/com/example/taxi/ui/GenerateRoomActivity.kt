@@ -69,16 +69,13 @@ class GenerateRoomActivity : AppCompatActivity() {
         // 초기 버튼 상태 확인
         checkFieldsForEmptyValues()
 
-        // 현재 위치 가져와서 startPointEditText에 힌트로 설정
-//        startHint = checkLocationPermissionAndGetLocation(binding.startPointEdit).toString()
-
         binding.webView.visibility = View.INVISIBLE
 
         val fullAddress = intent.getStringExtra("full address")
         val fullAddress2 = intent.getStringExtra("full address2")
         val jibun = intent.getStringExtra("jibun")
 
-
+        //출발지
         binding.startPointEdit.setOnClickListener {
             Log.d("this", "눌림")
             val webView: WebView = binding.webView
@@ -98,7 +95,7 @@ class GenerateRoomActivity : AppCompatActivity() {
             val rmStartPoint = fullAddress.toString()
             binding.startPointEdit.setText(rmStartPoint)
         }
-
+        // 목적지
         binding.endPointEdit.setOnClickListener {
             Log.d("this", "눌림")
             val webView: WebView = binding.webView
@@ -119,7 +116,7 @@ class GenerateRoomActivity : AppCompatActivity() {
             binding.endPointEdit.setText(rmEndPoint)
         }
 
-
+        //버튼
         binding.generateRoomButton.setOnClickListener {
 
             val rmStart = binding.startPointEdit.text.toString()
@@ -138,7 +135,7 @@ class GenerateRoomActivity : AppCompatActivity() {
 
         }
     }
-
+    //출발지
     inner class BridgeInterface {
         @JavascriptInterface
         @SuppressWarnings("unused")
@@ -154,6 +151,7 @@ class GenerateRoomActivity : AppCompatActivity() {
             }
         }
     }
+    //목적지
     inner class BridgeInterface2 {
         @JavascriptInterface
         @SuppressWarnings("unused")
@@ -167,60 +165,6 @@ class GenerateRoomActivity : AppCompatActivity() {
                 binding.endPointEdit.setText(fullRoadAddr)
                 binding.webView.visibility = View.INVISIBLE
             }
-        }
-    }
-
-    // 현재 위치의 경도와 위도를 반환하는 함수
-    @SuppressLint("MissingPermission")
-    private fun getCurrentLocationCoordinates(callback: (Double, Double) -> Unit) {
-        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationProviderClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                location?.let {
-                    callback(it.latitude, it.longitude)
-                }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, exception.localizedMessage, Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun checkLocationPermissionAndGetLocation(textView: TextView) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION)
-        } else {
-            getLocation(textView)
-        }
-    }
-
-    private fun getLocation(textView: TextView) {
-        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return
-        }
-        fusedLocationProviderClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                location?.let {
-                    val addressList = getAddress(it.latitude, it.longitude)
-                    if (!addressList.isNullOrEmpty()) {
-                        val address = addressList[0].getAddressLine(0)
-                        textView.hint = address
-                    }
-                }
-            }
-            .addOnFailureListener { exception ->
-                textView.text = exception.localizedMessage
-            }
-    }
-
-    private fun getAddress(lat: Double, lng: Double): List<Address>? {
-        return try {
-            val geocoder = Geocoder(this, Locale.KOREA)
-            geocoder.getFromLocation(lat, lng, 1)
-        } catch (e: IOException) {
-            Toast.makeText(this, "주소를 가져 올 수 없습니다", Toast.LENGTH_SHORT).show()
-            null
         }
     }
 
@@ -250,14 +194,4 @@ class GenerateRoomActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable?) {}
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_LOCATION_PERMISSION) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                getLocation(binding.startPointEdit)
-            } else {
-                Toast.makeText(this, "위치 권한이 필요합니다", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }

@@ -8,8 +8,6 @@
     tools:context=".ui.GenerateRoomActivity">
 
 
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLeft"
         android:layout_width="wrap_content"

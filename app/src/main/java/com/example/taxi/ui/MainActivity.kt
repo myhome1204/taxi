@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         binding.createRoom.setOnClickListener {
             startActivity(Intent(this, GenerateRoomActivity::class.java))
         }
+        binding.payment.setOnClickListener {
+            startActivity(Intent(this, PaymentActivity::class.java))
+        }
     }
 
 }
