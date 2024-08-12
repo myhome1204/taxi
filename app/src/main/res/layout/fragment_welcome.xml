@@ -22,7 +22,7 @@
         android:textSize="70px"
         android:lineHeight="80px"
         android:textColor="@color/black"
-        android:fontFamily="@font/worksans1"
+        android:fontFamily="@font/worksans"
         android:textFontWeight="600"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="30dp"
