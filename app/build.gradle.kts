@@ -82,4 +82,9 @@ dependencies {
     implementation ("com.google.android.material:material:1.4.0")
 
     implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+    // 스웨거, 레트로핏
+    implementation (libs.retrofit2.retrofit)
+    implementation (libs.squareup.converter.gson)
+    implementation (libs.swagger.annotations)
 }

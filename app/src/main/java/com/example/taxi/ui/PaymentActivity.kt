@@ -90,7 +90,7 @@ class PaymentActivity : AppCompatActivity() {
 
         binding.checkButton.apply {
             isEnabled = accountNumber.isNotEmpty() && bankName.isNotEmpty() && price.isNotEmpty()
-            setBackgroundColor(if (isEnabled) Color.BLACK else Color.GREEN)
+            setBackgroundColor(if (isEnabled) Color.parseColor("#3D6840") else Color.GRAY)
         }
     }
 
