@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/welcome_taximate_logo_iv"
+        android:layout_width="89dp"
+        android:layout_height="78dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="124dp"
+        android:src="@drawable/asset_2_3"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp" />
+
+    <TextView
+        android:id="@+id/welcome_msg_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="택시메이트가\n되신 것을 환영합니다!"
+        android:textSize="70px"
+        android:lineHeight="80px"
+        android:textColor="@color/black"
+        android:fontFamily="@font/worksans1"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintTop_toBottomOf="@id/welcome_taximate_logo_iv"
+        android:layout_marginTop="35dp" />
+
+    <ImageButton
+        android:id="@+id/welcome_notification_check_btn_no_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:visibility="visible"/>
+    
+    <ImageButton
+        android:id="@+id/welcome_notification_check_btn_yes_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/group_9574"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:visibility="invisible"/>
+        
+
+    <TextView
+        android:id="@+id/welcome_notification_check_title_tv"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:text="[선택] 택시메이트 알림 받기"
+        android:fontFamily="@font/worksans"
+        android:textFontWeight="500"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/welcome_notification_check_btn_no_ib"
+        app:layout_constraintTop_toTopOf="@id/welcome_notification_check_btn_no_ib"/>
+
+    <TextView
+        android:id="@+id/welcome_notification_check_content_tv"
+        android:layout_width="292dp"
+        android:layout_height="30dp"
+        android:text="새로운 합승객이 추가되었다는 알림, 다른 사용자로부터 전송된 \n메시지 알림 등을 실시간으로 전해드려요."
+        app:layout_constraintTop_toBottomOf="@id/welcome_notification_check_title_tv"
+        app:layout_constraintStart_toStartOf="@id/welcome_notification_check_title_tv"
+        android:layout_marginTop="8dp"
+        android:textSize="11dp"
+        android:textColor="#888888"
+        android:fontFamily="@font/worksans"
+        android:textFontWeight="500" />
+        
+    <ImageButton
+        android:id="@+id/welcome_start_taximate_btn_ib"
+        android:layout_width="354dp"
+        android:layout_height="56dp"
+        android:src="@drawable/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_notification_check_content_tv"
+        android:layout_marginTop="50dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

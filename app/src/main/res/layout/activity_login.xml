@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/login_taximate_logo_iv"
+        android:layout_width="109dp"
+        android:layout_height="96dp"
+        android:src="@drawable/asset_2_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="363dp" />
+
+
+    <ImageView
+        android:id="@+id/login_kakao_adv_pack_iv"
+        android:layout_width="130dp"
+        android:layout_height="27dp"
+        android:src="@drawable/rectangle_1192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_kakao_login_btn_ib"
+        android:layout_marginBottom="15dp" />
+
+    <ImageView
+        android:id="@+id/login_kakao_adv_pack2_iv"
+        android:layout_width="7dp"
+        android:layout_height="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/group_9571"
+        app:layout_constraintTop_toTopOf="@id/login_kakao_adv_pack_iv"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/login_kakao_adv_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5초만에 빠른 회원가입"
+        android:textColor="#FF501F"
+        android:fontFamily="@font/worksans"
+        android:textFontWeight="600"
+        android:textSize="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/login_kakao_adv_pack_iv"
+        android:layout_marginTop="5dp"
+        android:lineHeight="12.9dp"/>
+
+
+    <ImageButton
+        android:id="@+id/login_kakao_login_btn_ib"
+        android:layout_width="354dp"
+        android:layout_height="53dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/login_taximate_logo_iv"
+        android:layout_marginTop="250dp"
+        android:src="@drawable/kakao_login_large_wide_1"/>
+
+
+    <LinearLayout
+        android:id="@+id/login_kakao_direct_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_kakao_login_btn_ib"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:id="@+id/login_kakao_direct_login_btn_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/worksans"
+            android:textFontWeight="500"
+            android:textSize="12dp"
+            android:lineHeight="14.08dp"
+            android:textColor="#545454"
+            android:text="카카오 계정 직접 입력"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/login_kakao_direct_login_line_btn_v"
+            android:layout_width="111dp"
+            android:layout_height="1dp"
+            android:background="#545454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </LinearLayout>
+
+    <!-- activity_login.xml -->
+    <FrameLayout
+        android:id="@+id/login_next_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
