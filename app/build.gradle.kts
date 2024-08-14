@@ -10,6 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.example.taxi"
         minSdk = 34
+        minSdkVersion(26)
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -25,7 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,6 +36,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
@@ -77,4 +84,10 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.google.android.material:material:1.4.0")
+
+    // Google Map
+    implementation ("com.google.android.gms:play-services-maps:17.0.0")
+    implementation ("com.google.android.gms:play-services-location:17.0.0")
+
+
 }

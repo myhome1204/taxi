@@ -2,9 +2,219 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.map.MapActivity">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/avatar" />
+
+    <LinearLayout
+        android:id="@+id/name"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/location" />
+        <TextView
+            android:id="@+id/university"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="명지대학교"
+            android:textColor="#61646B"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/line"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#EFEFF0"/>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:id="@+id/middlie"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/line"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="메이트를 찾고있어요!"
+        android:textColor="#19191B"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+        <!-- 아이콘 이미지뷰 -->
+        <ImageView
+            android:id="@+id/chat_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/chat" />
+        <!-- 읽지 않은 메시지 수를 표시하는 텍스트뷰 -->
+        <LinearLayout
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_alignEnd="@id/chat_icon"
+            android:layout_alignTop="@id/chat_icon"
+            android:gravity="center"
+            android:background="@drawable/red_circle">
+            <TextView
+                android:id="@+id/text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="5dp"
+                android:text="4"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+<!--            <TextView-->
+<!--                android:id="@+id/unread_count_text_view"-->
+<!--                android:layout_width="8dp"-->
+<!--                android:layout_height="8dp"-->
+<!--                android:layout_alignEnd="@id/chat_icon"-->
+<!--                android:layout_alignTop="@id/chat_icon"-->
+<!--                android:padding="2dp"-->
+<!--                android:text="4"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:gravity="center"-->
+<!--                android:translationY="0dp"-->
+<!--                android:visibility="visible"/>-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/where"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="어디로 가실건가요?"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/name"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:textColor="#19191B"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="5dp"/>-->
+
+<!--    <android.widget.Button-->
+<!--        android:id="@+id/create_room_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="방 만들기"-->
+<!--        android:background="@drawable/round_box"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:padding="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/name"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="8dp"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/middlie"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/make_room"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/plus" />
+    <FrameLayout
+        android:visibility="gone"
+        android:backgroundTint="#4D555F"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- 아래로 드러나는 컨텐츠 추가 -->
+            <TextView
+                android:id="@+id/bottom_sheet_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기흥역 -> 명지대 자연캠퍼스"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3월 23일 화요일, 12시 35분까지"
+                android:textColor="@color/white"
+                android:textSize="13sp"/>
+
+            <!-- 다른 필요한 View 요소들 추가 -->
+
+        </LinearLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

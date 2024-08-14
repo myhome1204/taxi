@@ -16,7 +16,6 @@ object ServiceConnector {
 
     val retrofit = Retrofit.Builder()
         .baseUrl("예시입니다")
-        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
