@@ -1,29 +1,34 @@
 package com.example.taxi.ui.map
-
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.taxi.data.repository.LocationRepository
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class RoomMakeViewModel (application: Application) : AndroidViewModel(application) {
+class RoomMakeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _userLocations = MutableLiveData<List<LatLng>>()
     val userLocations: LiveData<List<LatLng>> get() = _userLocations
 
-    var maxUserCount = 3 // 최대 사용자 수를 조절할 수 있는 변수
+    private val _maxUserCount = MutableLiveData<Int>()
+    val maxUserCount: LiveData<Int> get() = _maxUserCount
+
+    init {
+        _maxUserCount.value = 2 // 기본 값으로 2명 설정
+    }
+
+    fun setMaxUserCount(count: Int) {
+        _maxUserCount.value = count
+        fetchUserLocations()
+    }
 
     fun fetchUserLocations() {
         viewModelScope.launch {
             while (true) {
-                // 여기에 서버에서 위치 데이터를 받아오는 로직 추가
-                val locations = generateDummyLocations(maxUserCount)
+                val locations = generateDummyLocations(_maxUserCount.value ?: 2)
                 _userLocations.postValue(locations)
                 delay(5000L) // 5초마다 업데이트
             }
@@ -41,6 +46,7 @@ class RoomMakeViewModel (application: Application) : AndroidViewModel(applicatio
         if (userCount >= 3) {
             dummyLocations.add(LatLng(37.5610, 126.9982)) // User 3 위치
         }
+        // 필요 시 더 많은 사용자 위치를 추가할 수 있음
         return dummyLocations
     }
 }

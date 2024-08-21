@@ -10,12 +10,15 @@ import com.example.taxi.databinding.FragmentMakeRoomBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
 class MakeRoomFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMakeRoomBinding? = null
     private val binding get() = _binding!!
-    private lateinit var googleMap: GoogleMap
+    private var googleMap: GoogleMap? = null
     private val makeRoomViewModel: RoomMakeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -29,35 +32,35 @@ class MakeRoomFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // MapView 초기화
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync(this)
 
+        // 사용자 위치 데이터 변경을 관찰하고, 변경 시 지도에 마커를 업데이트
         makeRoomViewModel.userLocations.observe(viewLifecycleOwner, { locations ->
-            updateMap(locations)
+            googleMap?.let {
+                updateMap(locations)
+            }
         })
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-        googleMap.uiSettings.isScrollGesturesEnabled = true
-        googleMap.uiSettings.isZoomGesturesEnabled = true
-        googleMap.uiSettings.isZoomControlsEnabled = true
+        googleMap?.uiSettings?.isScrollGesturesEnabled = true
+        googleMap?.uiSettings?.isZoomGesturesEnabled = true
+        googleMap?.uiSettings?.isZoomControlsEnabled = true
 
+        // 초기 사용자 위치를 지도에 반영
+        makeRoomViewModel.userLocations.value?.let { updateMap(it) }
+
+        // 주기적으로 사용자 위치를 가져오기 시작
         makeRoomViewModel.fetchUserLocations()
     }
 
     private fun updateMap(userLocations: List<LatLng>) {
-        googleMap.clear()
-
-        val startLocation = LatLng(37.5665, 126.9780)
-        val endLocation = LatLng(37.5765, 126.9880)
-
-        googleMap.addMarker(MarkerOptions().position(startLocation).title("Start"))
-        googleMap.addMarker(MarkerOptions().position(endLocation).title("End"))
+        googleMap?.clear() // 기존 마커 제거
 
         val boundsBuilder = LatLngBounds.builder()
-        boundsBuilder.include(startLocation)
-        boundsBuilder.include(endLocation)
 
         userLocations.forEachIndexed { index, userLocation ->
             val markerOptions = MarkerOptions().position(userLocation)
@@ -66,14 +69,14 @@ class MakeRoomFragment : Fragment(), OnMapReadyCallback {
                 1 -> markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 else -> markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
             }
-            googleMap.addMarker(markerOptions.title("User ${index + 1}"))
+            googleMap?.addMarker(markerOptions.title("User ${index + 1}"))
             boundsBuilder.include(userLocation)
         }
 
         val bounds = boundsBuilder.build()
         val padding = 100 // px
         val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
-        googleMap.animateCamera(cameraUpdate)
+        googleMap?.animateCamera(cameraUpdate)
     }
 
     override fun onResume() {
